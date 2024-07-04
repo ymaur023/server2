@@ -32,13 +32,14 @@ app.post('/data', (req, res) => {
 });
 
 
-const server=app.listen(process.env.PORT || 10000,()=>{
-  if(err){
-    console.log(err);
 
-  }
-  else{
-    console.log('Server is running on port',server.address().port);
-  }
-}
-);
+const PORT = process.env.PORT || 3000;
+
+// Sunucu başlatma
+app.listen(PORT, (err) => {
+    if (err) {
+        console.error('Sunucu başlatılamadı:', err);
+    } else {
+        console.log(`Sunucu ${PORT} portunda çalışıyor.`);
+    }
+});
