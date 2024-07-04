@@ -20,13 +20,9 @@ app.post('/data', (req, res) => {
   res.status(200).send('Veri başarıyla alındı');
 });
 
-app.get('/data', (req, res) => {
-  // Burada veri kaynağınızdan en son buttonValue değerini alın
-  const latestButtonValue = getLatestButtonValue();  // Bu fonksiyon veri kaynağınızdan son değeri dönmelidir
-  res.json({ buttonValue: latestButtonValue });
-});
 
-const PORT = process.env.PORT || 3000;
+
+const PORT = process.env.PORT || 10000;
 
 // Sunucu başlatma
 app.listen(PORT, (err) => {
