@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 let currentValue = 0;  // Başlangıç değeri olarak 0
 
 // CORS middleware'ini uygula
@@ -21,13 +21,10 @@ app.get('/current-value', (req, res) => {
   console.log('Current button value is:', currentValue);
 });
 
-const server=app.listen(process.env.PORT || 3001,()=>{
-  if(err){
-    console.log(err);
-
+const server = app.listen(port, (err) => {
+  if (err) {
+    console.error('Error starting server:', err);
+  } else {
+    console.log('Server is running on port', server.address().port);
   }
-  else{
-    console.log('Server is running on port',server.address().port);
-  }
-}
-);
+});
