@@ -8,18 +8,7 @@ let currentValue = 0;  // Başlangıç değeri olarak 0
 // CORS middleware'ini uygula
 app.use(cors());
 app.use(express.json());
-app.get('/update-button', (req, res) => {
-  const buttonValue = req.query.value;  // Query parametresinden buton değerini alır
-  currentValue = buttonValue;  // Alınan değeri güncel değer olarak sakla
-  console.log('Current button value updated to:', currentValue);
-  res.send(`Current button value is now: ${currentValue}`);  // Cevap olarak güncel değeri geri gönder
-});
 
-
-app.get('/current-value', (req, res) => {
-  res.send(`Current button value is: ${currentValue}`);  // Güncel değeri geri döndür
-  console.log('Current button value is:', currentValue);
-});
 
 app.use(cors({
   origin: 'https://arcadetablet.vercel.app' // Vercel uygulamanızın URL'si
@@ -31,7 +20,11 @@ app.post('/data', (req, res) => {
   res.status(200).send('Veri başarıyla alındı');
 });
 
-
+app.get('/data', (req, res) => {
+  // Burada veri kaynağınızdan en son buttonValue değerini alın
+  const latestButtonValue = getLatestButtonValue();  // Bu fonksiyon veri kaynağınızdan son değeri dönmelidir
+  res.json({ buttonValue: latestButtonValue });
+});
 
 const PORT = process.env.PORT || 3000;
 
