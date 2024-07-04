@@ -20,6 +20,9 @@ app.post('/data', (req, res) => {
   res.status(200).send('Veri başarıyla alındı');
 });
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
 
 const PORT = process.env.PORT || 10000;
