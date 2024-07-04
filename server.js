@@ -16,12 +16,13 @@ app.use(cors({
 
 // API route'ları
 app.post('/data', (req, res) => {
-  console.log(req.body);
+  currentValue = req.body.buttonValue; // Gelen değeri güncelle
+  console.log('Received data:', req.body);
   res.status(200).send('Veri başarıyla alındı');
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send(`Current Button Value: ${currentValue}`); // Güncel buton değerini gönder
 });
 
 
